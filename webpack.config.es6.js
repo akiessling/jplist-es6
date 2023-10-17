@@ -2,7 +2,8 @@ const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
 //const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const copy = require('./build/webpack-copy-plugin/plugin');
 
 //handle source version
@@ -29,32 +30,29 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
-                        {
-                            loader: 'css-loader',
-                            options: { minimize: false }
-                        },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                minimize: false,
-                                plugins: (loader) => [
-                                    require('postcss-import')({ root: loader.resourcePath }),
-                                    require('postcss-cssnext')({warnForDuplicates: false}),
-                                    require('postcss-nested')(),
-                                    require('postcss-simple-vars')(),
-                                    require('autoprefixer')(),
-                                    require('postcss-prettify')(),
-                                    //require('cssnano')({zindex: false})
-                                ]
-                            }
-                        }
-                    ]
-                })
-            }
+                test: /\.(css|sass|scss)$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+
+                    {loader: "css-loader", options: {importLoaders: 1}},
+                    // {
+                    //   loader: 'postcss-loader',
+                    //   options: {
+                    //     ident: 'postcss',
+                    //       plugins: (loader) => [
+                    //           require('postcss-import')({ root: loader.resourcePath }),
+                    //           require('postcss-cssnext')({warnForDuplicates: false}),
+                    //           require('postcss-nested')(),
+                    //           require('postcss-simple-vars')(),
+                    //           require('autoprefixer')(),
+                    //           require('postcss-prettify')(),
+                    //           //require('cssnano')({zindex: false})
+                    //       ],
+                    //     sourceMap: false,
+                    //   },
+                    // },
+                ]
+            },
         ]
     },
 
@@ -68,8 +66,10 @@ const config = {
         }),
 
         //https://webpack.js.org/plugins/extract-text-webpack-plugin/
-        new ExtractTextPlugin('jplist.styles.css'),
-
+        // new ExtractTextPlugin('jplist.styles.css'),
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+        }),
         new copy()
     ],
 
