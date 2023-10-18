@@ -11,7 +11,7 @@
     "test": "jest src",
     "test120": "jest src/1.2.0",
     "lint": "./node_modules/.bin/eslint src",
-    "site": "light-server -s docs -p 3000 -b localhost --no-reload -w 'build/site/** # npm run render && echo Rendered!'",
+    "site": "light-server -s docs -p 3010 -b localhost --no-reload -w 'build/site/** # npm run render && echo Rendered!'",
     "render": "node ./build/site/render.js"
   },
   "author": "Miriam Zusin",
