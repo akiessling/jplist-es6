@@ -1,3 +1,9 @@
+# USE WITH CARE
+
+I just needed to make some adjustments to the filter logic but could not build it at all. Thus an upgrade of webpack was needed to make it work with newer node versions.
+The JS output seems to work - that was all i needed. 
+
+
 # [jPList Library](https://jplist.org)
 
 **jPList** is a JavaScript library for sorting, pagination and filtering of any HTML structure like DIVs, UL/LI, tables, etc. [MIT Licensed](https://github.com/1rosehip/jplist-es6/blob/master/LICENSE.txt). Get started at [jplist.org](https://jplist.org) with [documentation](https://jplist.org/documentation/getting-started) or [examples](https://jplist.org/examples/index).
