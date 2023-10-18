@@ -64,11 +64,12 @@ class FilterAction{
                     }
 
                     default:{
+                        let strings = formattedText.split(' ');
 
-                        //contains
-                        if(elText.indexOf(formattedText) !== -1){
-                            shouldBeAdded = true;
-                        }
+                        shouldBeAdded = strings.every(function (str) {
+                           return elText.indexOf(str) !== -1;
+                            }
+                        );
 
                         break;
                     }
